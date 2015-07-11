@@ -1,59 +1,37 @@
-# liblo message functions
+# messages.l - OO extentsion for liblo lo_message's
+#
+# The MIT License (MIT)
+#
+# copyright (c) 2015 Erik Gustafson
 
-(de lo-message-new ()
-   (native "liblo.so" "lo_message_new" NIL) )
+(load 
+   "osc.l"
+   "@lib/math.l" )
 
-(de lo-message-add (MSG TYPES . @)
-   (native "liblo.so" "lo_message_add" 'I MSG TYPES (rest)) )
+(class +LoMessage +Entity)
+(rel ptr (+Number))   # pointer to message
 
-(de lo-message-add-varargs ())
+[dm T ()
+   (=: ptr
+       (osc~ffi 'lo-message-new) ]
 
-(de lo-message-incref (MSG))
+[dm incref> ()
+   (osc~ffi 
+      'lo-message-incref 
+      (: ptr) ]
 
-(de lo-message-clone (MSG))
+[dm add-int32> (N)
+   (osc~ffi
+      'lo-message-add-int32
+      (: ptr)
+      N ] 
 
-(de lo-message-free (MSG))
+[dm add-true> ()
+   (osc~ffi
+      'lo-message-add-true
+      (: ptr) ]
 
-(de lo-message-add-int32 ())
-
-(de lo-message-add-float ())
-
-(de lo-message-add-string ())
-
-(de lo-message-add-blob ())
-
-(de lo-message-add-int64 ())
-
-(de lo-message-add-timetag ())
-
-(de lo-message-add-double ())
-
-(de lo-message-add-symbol ())
-
-(de lo-message-add-char ())
-
-(de lo-message-add-midi ())
-
-(de lo-message-add-true ())
-
-(de lo-message-add-false ())
-
-(de lo-message-add-nil ())
-
-(de lo-message-add-infinitum ())
-
-(de lo-message-get-source ())
-
-(de lo-message-get-timestamp (MSG))
-
-(de lo-message-get-types (MSG))
-
-(de lo-message-get-argc (MSG))
-
-(de lo-message-get-argv (MSG))
-
-(de lo-message-length (MSG PATH))
-
-(de lo-message-serialise ())
-
-(de lo-message-deserialise ())
+[dm get-types> ()
+   (osc~ffi
+      'lo-message-get-types
+      (: ptr) ]
