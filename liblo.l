@@ -1,4 +1,4 @@
-# osc.l - (native) PicoLisp bindings for liblo
+# liblo.l - (native) PicoLisp bindings for liblo
 #
 # The MIT License (MIT)
 #
