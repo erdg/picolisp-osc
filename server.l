@@ -1,32 +1,43 @@
-# liblo server functions
+# server.l - OO wrapper for lo_server
+#
+# The MIT License (MIT)
+#
+# copyright (c) 2015 Erik Gustafson
 
-(de lo-server-new (PORT ERR) # Error handler
-   (native "liblo.so" "lo_server_new" 'N PORT ERR) )
+[class +LoServer +Entity]
+[rel ptr (+Number)]
 
-(de lo-server-free (S)
-   (native "liblo.so" "lo_server_free" NIL S) )
+[dm T (Port ErrHandler)
+   (default Port 0 ErrHandler 0)
+   (=: ptr
+       (osc~ffi 'lo-server-new
+          Port
+          ErrHandler ]
 
-## FIXME ###
-(de lo-server-new-from-url (URL ERR)
-   (native "liblo.so" "lo_server_new_from_url" 'N URL ERR) )
+# (add-method> Obj
+#   '(foo-handler ("foo/" "iiff")
+#      (println "Hey! You got a message") ) )
+[dm add-method> (Name Path TypeSpec Fun Data)
+   (osc~ffi 'lo-server-add-method
+      (: ptr)
+      Path
+      TypeSpec
+      (lisp (quote Name) Fun)
+      Data ]
 
-(de lo-server-recv (SERVER)
-   (native "liblo.so" "lo_server_recv" 'I SERVER) )
+[dm get-port ()
+   (osc~ffi 'lo-server-get-port
+      (: ptr) ]
 
-(de lo-server-recv-noblock (SERVER TIMEOUT)
-   (native "liblo.so" "lo_server_recv_noblock" 'I SERVER TIMEOUT) )
+# prettyprint
+[dm pp> ()
+   (osc~ffi 'lo-server-pp
+      (: ptr) ]
 
-(de lo-server-add-method (SERVER PATH TYPES HANDLER DATA) 
-   (native "liblo.so" "lo_server_add_method" 'I SERVER PATH TYPES HANDLER DATA) )
+[dm recv> ()
+   (osc~ffi 'lo-server-recv
+      (: ptr) ]
 
-(de lo-server-get-url (SERVER)
-   (native "liblo.so" "lo_server_get_url" 'S SERVER) )
-
-(de lo-server-get-port (SERVER)
-   (native "liblo.so" "lo_server_get_port" 'I SERVER) )
-
-(de lo-server-get-protocol (SERVER)
-   (native "liblo.so" "lo_server_get_protocol" 'I SERVER) )
-
-(de lo-server-get-socket-fd (SERVER)
-   (native "liblo.so" "lo_server_get_socket_fd" 'I SERVER) )
+[dm recv-noblock>
+   (osc~ffi 'lo-server-recv-noblock
+      (: ptr) ]

@@ -4,10 +4,6 @@
 #
 # copyright (c) 2015 Erik Gustafson
 
-(load 
-   "osc.l"
-   "@lib/math.l" )
-
 (class +LoMessage +Entity)
 (rel ptr (+Number))   # pointer to message
 
@@ -15,6 +11,10 @@
    (=: ptr
        (osc~ffi 'lo-message-new) ]
 
+[dm send> (Addr Path)
+   (osc~ffi 'lo-send-message
+      Addr Path (: ptr) ]
+      
 [dm incref> ()
    (osc~ffi 
       'lo-message-incref 
@@ -31,7 +31,18 @@
       'lo-message-add-true
       (: ptr) ]
 
+[dm add-float> (N)
+   (osc~ffi
+      'lo-message-add-float
+      (: ptr)
+      (cons N -1.0) ]
+
 [dm get-types> ()
    (osc~ffi
       'lo-message-get-types
+      (: ptr) ]
+
+[dm pp> ()
+   (osc~ffi
+      'lo-message-pp
       (: ptr) ]
