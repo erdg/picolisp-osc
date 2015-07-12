@@ -4,45 +4,45 @@
 #
 # copyright (c) 2015 Erik Gustafson
 
-(class +LoMessage +Entity)
+(class +OscMessage +Entity)
 (rel ptr (+Number))   # pointer to message
 
 [dm T ()
    (=: ptr
-       (osc~ffi 'lo-message-new) ]
+       (liblo~ffi 'lo-message-new) ]
 
 [dm send> (Addr Path)
-   (osc~ffi 'lo-send-message
+   (liblo~ffi 'lo-send-message
       (; Addr ptr) Path (: ptr) ]
       
 [dm incref> ()
-   (osc~ffi 
+   (liblo~ffi 
       'lo-message-incref 
       (: ptr) ]
 
 [dm add-int32> (N)
-   (osc~ffi
+   (liblo~ffi
       'lo-message-add-int32
       (: ptr)
       N ] 
 
 [dm add-true> ()
-   (osc~ffi
+   (liblo~ffi
       'lo-message-add-true
       (: ptr) ]
 
 [dm add-float> (N)
-   (osc~ffi
+   (liblo~ffi
       'lo-message-add-float
       (: ptr)
       (cons N -1.0) ]
 
 [dm get-types> ()
-   (osc~ffi
+   (liblo~ffi
       'lo-message-get-types
       (: ptr) ]
 
 [dm pp> ()
-   (osc~ffi
+   (liblo~ffi
       'lo-message-pp
       (: ptr) ]

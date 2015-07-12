@@ -1,12 +1,12 @@
-(class +LoAddress +Entity)
+(class +OscAddress +Entity)
 (rel ptr (+Number))
 
 [dm T (Host Port)
    (default Host 0)
    (=: ptr
-       (osc~ffi 'lo-address-new
-         Host Port ]
+       (liblo~ffi 'lo-address-new
+          Host Port ]
 
 [dm pp> ()
-   (osc~ffi 'lo-address-pp
+   (liblo~ffi 'lo-address-pp
       (: ptr) ]

@@ -4,13 +4,13 @@
 #
 # copyright (c) 2015 Erik Gustafson
 
-[class +LoServer +Entity]
+[class +OscServer +Entity]
 [rel ptr (+Number)]
 
 [dm T (Port ErrHandler)
    (default Port 0 ErrHandler 0)
    (=: ptr
-       (osc~ffi 'lo-server-new
+       (liblo~ffi 'lo-server-new
           Port
           ErrHandler ]
 
@@ -18,26 +18,26 @@
 #   '(foo-handler ("foo/" "iiff")
 #      (println "Hey! You got a message") ) )
 [dm add-method> (Name Path TypeSpec Fun Data)
-   (osc~ffi 'lo-server-add-method
+   (liblo~ffi 'lo-server-add-method
       (: ptr)
       Path
       TypeSpec
       (lisp Name Fun)
       Data ]
 
-[dm get-port ()
-   (osc~ffi 'lo-server-get-port
+[dm get-port> ()
+   (liblo~ffi 'lo-server-get-port
       (: ptr) ]
 
 # prettyprint
 [dm pp> ()
-   (osc~ffi 'lo-server-pp
+   (liblo~ffi 'lo-server-pp
       (: ptr) ]
 
 [dm recv> ()
-   (osc~ffi 'lo-server-recv
+   (liblo~ffi 'lo-server-recv
       (: ptr) ]
 
 [dm recv-noblock> ()
-   (osc~ffi 'lo-server-recv-noblock
+   (liblo~ffi 'lo-server-recv-noblock
       (: ptr) ]
