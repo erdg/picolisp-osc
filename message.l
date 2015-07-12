@@ -13,7 +13,7 @@
 
 [dm send> (Addr Path)
    (osc~ffi 'lo-send-message
-      Addr Path (: ptr) ]
+      (; Addr ptr) Path (: ptr) ]
       
 [dm incref> ()
    (osc~ffi 
