@@ -22,7 +22,7 @@
       (: ptr)
       Path
       TypeSpec
-      (lisp (quote Name) Fun)
+      (lisp Name Fun)
       Data ]
 
 [dm get-port ()
@@ -38,6 +38,6 @@
    (osc~ffi 'lo-server-recv
       (: ptr) ]
 
-[dm recv-noblock>
+[dm recv-noblock> ()
    (osc~ffi 'lo-server-recv-noblock
       (: ptr) ]
