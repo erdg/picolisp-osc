@@ -56,6 +56,8 @@
    (lo-message-deserialize  'N)
    
 # address
+   (lo-address-new          'N)
+   (lo-address-free         NIL)
    (lo-address-get-hostname 'S)
    (lo-address-get-port     'S)
    (lo-address-get-protocol 'I)
