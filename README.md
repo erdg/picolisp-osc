@@ -3,30 +3,32 @@
 
 ## Usage
 
-### liblo.l
+#### liblo.l
 `liblo.l` contains the direct ffi-bindings. They are accessible via `ffi` in the `liblo` namespace.
 
 ```lisp
 pil liblo.l +
-(liblo~ffi 'lo-message-new)
+: (liblo~ffi 'lo-message-new)
+-> 12066576
 ```
 
 or
 
 ```lisp 
 pil +
-(symbols 'liblo)
-(ffi 'lo-message-new)
+: (symbols 'liblo)
+-> pico
+liblo: (ffi 'lo-message-new)
+-> 12066704
 ``` 
 
-### Picolisp DB 
+#### Picolisp DB 
 `server.l`, `address.l`, and `message.l` implement an OO wrapper over the functions in `liblo.l`, bringing all the goodness into the PicoLisp DB. This may be a terrible idea.
 
 A session at the PicoLisp repl might look something like this:
 
 ```lisp
 pil server.l address.l message.l +
-
 : (pool (tmp "osc.db"))
 -> T
 : (new! '(+OscServer) 6789)   # server at port 6789
