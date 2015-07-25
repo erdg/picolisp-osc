@@ -7,7 +7,7 @@
 `liblo.l` contains the direct ffi-bindings. They are accessible via `ffi` in the `liblo` namespace.
 
 ```lisp
-pil liblo.l +
+$ pil liblo.l +
 : (liblo~ffi 'lo-message-new)
 -> 12066576
 ```
@@ -15,7 +15,7 @@ pil liblo.l +
 or
 
 ```lisp 
-pil +
+$ pil +
 : (symbols 'liblo)
 -> pico
 liblo: (ffi 'lo-message-new)
@@ -28,7 +28,7 @@ liblo: (ffi 'lo-message-new)
 A session at the PicoLisp repl might look something like this:
 
 ```lisp
-pil server.l address.l message.l +
+$ pil server.l address.l message.l +
 : (pool (tmp "osc.db"))
 -> T
 : (new! '(+OscServer) 6789)   # server at port 6789
