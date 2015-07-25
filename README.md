@@ -3,6 +3,7 @@
 
 ## Usage
 
+### liblo.l
 `liblo.l` contains the direct ffi-bindings. They are accessible via `ffi` in the `liblo` namespace.
 
 ```lisp
@@ -18,7 +19,8 @@ pil +
 (ffi 'lo-message-new)
 ``` 
 
-`server.l`, `address.l`, and `message.l` implement an OO wrapper over the functions in `liblo.l`, bringing all the goodness into the PicoLisp DB domain. This may be a terrible idea.
+### Picolisp DB 
+`server.l`, `address.l`, and `message.l` implement an OO wrapper over the functions in `liblo.l`, bringing all the goodness into the PicoLisp DB. This may be a terrible idea.
 
 A session at the PicoLisp repl might look something like this:
 
@@ -29,10 +31,11 @@ pil server.l address.l message.l +
 -> T
 : (new! '(+OscServer) 6789)   # server at port 6789
 -> {2}
-: (server-add-method> '{2} 
-   '(foo-handler ("/foo" "ii") (println "You received an OSC message containing two ints!")) )
+: (server-add-method> '{2}    # install a callback to respond to our message
+   '(foo-handler ("/foo" "ii") 
+      (println "You received an OSC message containing two ints!")))
 -> 29242656
-: (server-pretty> '{2})
+: (server-pretty> '{2})   # inspect it! 
 socket: 4
 
 Methods
