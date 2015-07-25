@@ -20,13 +20,11 @@
       (pass native `*Liblo (chop-ffi (car Rule)) (eval (cadr Rule) ]
 
 [de ffi-table 
-   (lo-send-message         'I)
-   (lo-send-message-from    'I)
-   (lo-send-bundle          'I)
-   (lo-send-bundle-from     'I)
-   
+      
 # messages
    (lo-message-new          'N)
+   (lo-send-message         'I)
+   (lo-send-message-from    'I)
    (lo-message-incref       NIL)    # lo_message
    (lo-message-clone        'N)     # lo_message
    (lo-message-free         NIL)
@@ -55,7 +53,7 @@
    (lo-message-serialize    'N)
    (lo-message-deserialize  'N)
    
-# address
+# addresses
    (lo-address-new          'N)
    (lo-address-free         NIL)
    (lo-address-get-hostname 'S)
@@ -71,6 +69,8 @@
    
 # bundles
    (lo-bundle-new           'N)     # lo_timetag
+   (lo-send-bundle          'I)
+   (lo-send-bundle-from     'I)
    (lo-bundle-free          NIL)
    (lo-bundle-free-recursive  NIL)
    (lo-bundle-free-messages   NIL)
