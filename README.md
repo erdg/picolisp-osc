@@ -64,10 +64,10 @@ Methods
 : (new! '(+OscMessage))
 -> {4}
 : (message-add-int32> '{4} 24)
--> 0
+-> 0  # success! 
 : (message-add-int32> '{4} 35)
 -> 0
-: (message-pretty> '{4})
+: (message-pretty> '{4})  # inspect it! 
 ,ii 24 35
 -> NIL
 : (message-send> '{4} '{3} "/foo")  # send message '{4} to path "/foo" at address '{3}
