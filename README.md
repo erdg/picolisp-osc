@@ -1,5 +1,5 @@
 # picolisp-osc
-Liblo FFI bindings for PicoLisp
+[Liblo](http://liblo.sourceforge.net/) FFI bindings for PicoLisp
 
 ## Usage
 
