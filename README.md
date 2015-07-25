@@ -1,6 +1,18 @@
 # picolisp-osc
 [Liblo](http://liblo.sourceforge.net/) FFI bindings for PicoLisp
 
+## Assumptions...
+Liblo is installed already.
+```bash
+$ whereis liblo
+liblo: /usr/lib/liblo.so
+```
+If this is not the case, you might
+```lisp
+(setq *Liblo "/where/my/liblo/is/located")
+```
+in `liblo.l`.
+
 ## Usage
 
 #### liblo.l
