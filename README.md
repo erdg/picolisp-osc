@@ -35,12 +35,12 @@ liblo: (ffi 'lo-message-new)
 ``` 
 
 #### Picolisp DB 
-`server.l`, `address.l`, and `message.l` implement an OO wrapper over the functions in `liblo.l`, bringing all the goodness into the PicoLisp DB. This may be a terrible idea.
+`osc.l` implements an OO wrapper over the functions in `liblo.l`, bringing all the goodness into the PicoLisp DB. This may be a terrible idea.
 
 A session at the PicoLisp repl might look something like this:
 
 ```lisp
-$ pil server.l address.l message.l +
+$ pil osc.l +
 : (pool (tmp "osc.db"))
 -> T
 : (new! '(+OscServer) 6789)   # server at port 6789
