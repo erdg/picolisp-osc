@@ -16,7 +16,7 @@ in `liblo.l`.
 ## Usage
 
 #### liblo.l
-`liblo.l` contains the direct ffi-bindings. They are accessible via `ffi` in the `liblo` namespace.
+`liblo.l` contains the direct ffi-bindings. All functions are accessible via `ffi` in the `liblo` namespace.
 
 ```lisp
 $ pil liblo.l +
@@ -35,7 +35,7 @@ liblo: (ffi 'lo-message-new)
 ``` 
 
 #### Picolisp DB 
-`osc.l` implements an OO wrapper over the functions in `liblo.l`, bringing all the goodness into the PicoLisp DB. This may be a terrible idea.
+`osc.l` implements an OO wrapper over the functions in `liblo.l`, bringing all that goodness to the PicoLisp DB. This may be a terrible, clunky, or terribly clunky idea.
 
 A session at the PicoLisp repl might look something like this:
 
@@ -77,3 +77,6 @@ Methods
 -> 20 
 : (bye)
 ```
+
+## Warning
+This library is still a baby. It's naive and has a limited world view. The API will certainly change as I figure out exactly what I'm trying to accomplish with PicoLisp and OSC.
