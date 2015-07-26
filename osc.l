@@ -4,7 +4,7 @@
 #
 # copyright 2015 (c) Erik Gustafson
 
-(load "liblo.l")
+(load (pack (car (file)) "liblo.l"))
 
 (class +OscServer +Entity)
 (rel ptr (+Number))
@@ -17,7 +17,7 @@
 #
 [dm T (Port ErrHandler)
    (default Port 0 ErrHandler 0)
-   (=: ptr
+   (put> This 'ptr
        (liblo~ffi 'lo-server-new
           (pack Port)
           ErrHandler ]
@@ -80,9 +80,10 @@
 
 [dm T (Host Port)
    (default Host 0)
-   (=: ptr
+   (put> This 'ptr
        (liblo~ffi 'lo-address-new
-          Host (pack Port) ]
+          Host 
+          (pack Port) ]
 
 [dm address-free> ()
    (liblo~ffi 'lo-address-free
@@ -94,7 +95,7 @@
 (rel ptr (+Number))   # pointer to message
 
 [dm T ()
-   (=: ptr
+   (put> This 'ptr
        (liblo~ffi 'lo-message-new) ]
 
 [dm message-free> ()
@@ -103,36 +104,32 @@
 
 [dm message-send> (Addr Path)
    (liblo~ffi 'lo-send-message
-      (; Addr ptr) Path (: ptr) ]
+      (; Addr ptr) 
+      Path 
+      (: ptr) ]
       
 [dm message-incref> ()
-   (liblo~ffi 
-      'lo-message-incref 
+   (liblo~ffi 'lo-message-incref 
       (: ptr) ]
 
 [dm message-add-int32> (N)
-   (liblo~ffi
-      'lo-message-add-int32
+   (liblo~ffi 'lo-message-add-int32
       (: ptr)
       N ] 
 
 [dm message-add-true> ()
-   (liblo~ffi
-      'lo-message-add-true
+   (liblo~ffi 'lo-message-add-true
       (: ptr) ]
 
 [dm message-add-float> (N)
-   (liblo~ffi
-      'lo-message-add-float
+   (liblo~ffi 'lo-message-add-float
       (: ptr)
       (cons N -1.0) ]
 
 [dm message-get-types> ()
-   (liblo~ffi
-      'lo-message-get-types
+   (liblo~ffi 'lo-message-get-types
       (: ptr) ]
 
 [dm message-pretty> ()
-   (liblo~ffi
-      'lo-message-pp
+   (liblo~ffi 'lo-message-pp
       (: ptr) ]
